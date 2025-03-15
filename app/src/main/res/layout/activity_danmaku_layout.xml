@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_detail_player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+<!--视频播放器-->
+    <com.example.gsyvideoplayer.video.DanmakuVideoPlayer
+        android:id="@+id/danmaku_player"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/post_media_height" />
+
+
+    <!-- TabLayout + ViewPager2 -->
+    <LinearLayout
+        android:id="@+id/viewpager_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

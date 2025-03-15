@@ -1,0 +1,23 @@
+<!-- fragment_announcement_bar.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+   >
+
+    <!-- 公告栏内容 -->
+    <TextView
+        android:id="@+id/announcement_text"
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="这里是公告栏内容，显示最新的公告信息这里是公告栏内容，显示最新的公告信息这里是公告栏内容，显示最新的公告信息"
+    android:textSize="16sp"
+    android:textColor="#333333"
+    android:background="#ffe2e2"
+    android:ellipsize="marquee"
+    android:singleLine="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:scrollHorizontally="true"/>
+</LinearLayout>
