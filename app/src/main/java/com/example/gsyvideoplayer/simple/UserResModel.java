@@ -8,7 +8,7 @@ public class UserResModel implements Serializable {
     private String avatarFile;
     private String msg;
     private String token;  // 增加token字段
-
+    private int Id;
     // Getter 和 Setter 方法
     public int getCode() {
         return code;
@@ -16,6 +16,14 @@ public class UserResModel implements Serializable {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     public String getUsername() {
@@ -54,6 +62,7 @@ public class UserResModel implements Serializable {
     public String toString() {
         return "UserResModel{" +
             "code=" + code +
+            "Id="+Id +'\'' +
             ", username='" + username + '\'' +
             ", avatarFile='" + avatarFile + '\'' +
             ", msg='" + msg + '\'' +

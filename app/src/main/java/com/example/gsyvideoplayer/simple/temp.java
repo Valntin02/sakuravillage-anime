@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 
 public class temp extends Activity {
@@ -83,6 +84,7 @@ public class temp extends Activity {
         }
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
         Call<VodResModel> call = apiService.requestVodData(weekday);
 
         ApiClient.requestData(call, new ApiClient.ApiResponseCallback<VodResModel>() {

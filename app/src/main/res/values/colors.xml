@@ -12,4 +12,6 @@
     <color name="nav_item_icon_color_selected">#8785a2</color>  <!-- 选中图标颜色 -->
     <color name="nav_item_text_color_selected">#8785a2</color>  <!-- 选中文本颜色 -->
 
+    <color name="comment_item_reply">#ececec</color>  <!-- 子评论区域 -->
+    <color name="common_color">#8785a2</color>  <!-- 子评论区域 -->
 </resources>

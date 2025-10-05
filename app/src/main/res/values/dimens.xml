@@ -9,4 +9,6 @@
     <dimen name="app_bar_height">@dimen/post_media_height</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="dialog_margin_top">200dp</dimen>
 </resources>

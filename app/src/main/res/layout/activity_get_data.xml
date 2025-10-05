@@ -22,7 +22,6 @@
 
     </LinearLayout>
 
-    <!-- 星期选择部分 -->
     <RadioGroup
         android:id="@+id/weekday_radio_group"
         android:layout_width="match_parent"
@@ -33,74 +32,82 @@
 
         <RadioButton
             android:id="@+id/radio_monday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周一"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_tuesday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周二"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_wednesday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周三"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_thursday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周四"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_friday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周五"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_saturday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周六"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radio_sunday"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="周日"
             android:button="@null"
             android:layout_marginEnd="7dp"
             android:background="@drawable/button_style"
-            android:padding="7dp" />
+            android:padding="7dp"
+            android:layout_weight="1" />
     </RadioGroup>
+
 
     <!-- 视频列表 -->
     <androidx.recyclerview.widget.RecyclerView

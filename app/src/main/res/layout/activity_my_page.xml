@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="我的"
         android:textSize="18sp"
+        android:paddingLeft="16dp"
         android:textColor="#333333" />
 
     <!-- 登录页面 -->

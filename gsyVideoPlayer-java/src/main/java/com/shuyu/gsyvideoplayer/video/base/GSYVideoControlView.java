@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -199,6 +200,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         super(context, fullFlag);
     }
 
+
     protected void init(Context context) {
         super.init(context);
 
@@ -308,6 +310,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         }
     }
 
+    protected abstract void danmakuPauseOrResume(int flag);
     /**
      * 设置播放显示状态
      *
@@ -316,6 +319,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
     @Override
     protected void setStateAndUi(int state) {
         mCurrentState = state;
+
         if ((state == CURRENT_STATE_NORMAL && isCurrentMediaListener())
                 || state == CURRENT_STATE_AUTO_COMPLETE || state == CURRENT_STATE_ERROR) {
             mHadPrepared = false;
@@ -335,15 +339,18 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                     }
                 }
                 releaseNetWorkState();
+
                 break;
             case CURRENT_STATE_PREPAREING:
                 resetProgressAndTime();
+
                 break;
             case CURRENT_STATE_PLAYING:
                 if (isCurrentMediaListener()) {
                     Debuger.printfLog(GSYVideoControlView.this.hashCode() + "------------------------------ CURRENT_STATE_PLAYING");
                     startProgressTimer();
                 }
+                danmakuPauseOrResume(1);
                 break;
             case CURRENT_STATE_PAUSE:
                 Debuger.printfLog(GSYVideoControlView.this.hashCode() + "------------------------------ CURRENT_STATE_PAUSE");
@@ -367,6 +374,10 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                     mBottomProgressBar.setProgress(100);
                 }
                 break;
+            case CURRENT_STATE_PLAYING_BUFFERING_START:
+                danmakuPauseOrResume(0);
+                break;
+
         }
         resolveUIState(state);
         if (mGsyStateUiListener != null) {
@@ -430,7 +441,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                     mVideoAllCallBack.onClickBlank(mOriginUrl, mTitle, GSYVideoControlView.this);
                 }
             }
-            startDismissControlViewTimer();
+            //startDismissControlViewTimer();
         }
     }
 
@@ -471,7 +482,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
 
         if (mIfCurrentIsFullscreen && mLockCurScreen && mNeedLockFull) {
             onClickUiToggle(event);
-            startDismissControlViewTimer();
+            //startDismissControlViewTimer();
             return true;
         }
 
@@ -503,7 +514,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                     break;
                 case MotionEvent.ACTION_UP:
 
-                    startDismissControlViewTimer();
+                    //startDismissControlViewTimer();
 
                     touchSurfaceUp();
 
@@ -532,7 +543,7 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
                     }
                     break;
                 case MotionEvent.ACTION_UP:
-                    startDismissControlViewTimer();
+                    //startDismissControlViewTimer();
 
                     Debuger.printfLog(GSYVideoControlView.this.hashCode() + "------------------------------ progress ACTION_UP");
                     startProgressTimer();
@@ -832,29 +843,29 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         switch (state) {
             case CURRENT_STATE_NORMAL:
                 changeUiToNormal();
-                cancelDismissControlViewTimer();
+                //cancelDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PREPAREING:
                 changeUiToPreparingShow();
-                startDismissControlViewTimer();
+                //startDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PLAYING:
                 changeUiToPlayingShow();
-                startDismissControlViewTimer();
+                //startDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PAUSE:
                 changeUiToPauseShow();
-                cancelDismissControlViewTimer();
+                //cancelDismissControlViewTimer();
                 break;
             case CURRENT_STATE_ERROR:
                 changeUiToError();
                 break;
             case CURRENT_STATE_AUTO_COMPLETE:
                 changeUiToCompleteShow();
-                cancelDismissControlViewTimer();
+                //cancelDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PLAYING_BUFFERING_START:
-                changeUiToPlayingBufferingShow();
+                //changeUiToPlayingBufferingShow();
                 break;
         }
     }
@@ -1096,6 +1107,8 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
         }
     };
 
+    //终于找到了，自动隐藏控制图层的代码，一开始其实招底部弹幕的控制，发现没有，而且他们是同时都隐藏，算是找到了
+    //这里决定不是使用
     Runnable dismissControlTask = new Runnable() {
         @Override
         public void run() {

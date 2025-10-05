@@ -5,15 +5,15 @@ import android.os.Parcelable;
 
 public class VodData implements Parcelable {
 
-    private int vod_id;
-    private String vod_name;
-    private String vod_pic;
-    private String vod_play_url;
-    private String vod_actor;
-    private String vod_remarks;  //目前更新到多少级
-    private String vod_year;
-    private String vod_content;
-    private String vod_total; //总集
+    protected int vod_id;
+    protected String vod_name;
+    protected String vod_pic;
+    protected String vod_play_url;
+    protected String vod_actor;
+    protected String vod_remarks;  //目前更新到多少级
+    protected String vod_year;
+    protected String vod_content;
+    protected String vod_total; //总集
 
     // 构造方法
     public VodData(int vod_id, String vod_name, String vod_pic, String vod_play_url,

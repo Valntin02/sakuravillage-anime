@@ -18,6 +18,7 @@ package com.example.gsyvideoplayer.utils;
 
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +42,7 @@ import master.flame.danmaku.danmaku.parser.BaseDanmakuParser;
 import master.flame.danmaku.danmaku.parser.android.AndroidFileSource;
 import master.flame.danmaku.danmaku.util.DanmakuUtils;
 
+//原作者定义的哔哩哔哩的弹幕解析
 public class BiliDanmukuParser extends BaseDanmakuParser {
 
     static {
@@ -124,6 +126,7 @@ public class BiliDanmukuParser extends BaseDanmakuParser {
                     // int poolType = Integer.parseInt(values[5]); // 弹幕池类型（忽略
                     item = mContext.mDanmakuFactory.createDanmaku(type, mContext);
                     if (item != null) {
+                        Log.d("bili", "parse: item not null");
                         item.setTime(time);
                         item.textSize = textSize * (mDispDensity - 0.6f);
                         item.textColor = color;

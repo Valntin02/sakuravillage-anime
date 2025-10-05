@@ -3,13 +3,26 @@ package com.example.gsyvideoplayer.simple;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.gsyvideoplayer.R;
+import com.example.gsyvideoplayer.RetrofitClient;
+import com.example.gsyvideoplayer.common.Param;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import okhttp3.RequestBody;
+import retrofit2.Call;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -21,7 +34,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
+        Param.setStatusBarTransparent(this, true,0xFFffe2e2);
         // 获取 BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.fragment_bottom_navigation);
         // 设置默认选中项
@@ -49,7 +62,7 @@ public class Main2Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        loadFragment(myPageFragment,myMainFragment);
+                        loadFragment(myPageFragment, myMainFragment);
 
                         return true;
 
@@ -75,5 +88,101 @@ public class Main2Activity extends AppCompatActivity {
             // 提交事务
             transaction.commit();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                syncMyStarData(); // 在应用退出时触发同步
+                syncPlayRecord();
+            }
+        });
+
+    }
+
+    public void syncPlayRecord(){
+
+        AppDatabase db = AppDatabase.getInstanceMyStarRecord(getApplicationContext());
+        PlayRecordDao syncPlayRecord=db.playRecordDao();
+        // 获取所有未同步的记录
+        List<PlayRecord> unsyncedRecords = syncPlayRecord.getUnsyncedRecords();
+
+        if (unsyncedRecords.isEmpty()) {
+            return; // 没有未同步的数据
+        }
+
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        //这里就不创建新的接受类了 使用泛 Map
+        Call<JsonResModel> call = apiService.syncPlayRecords(unsyncedRecords);
+
+        ApiClient.requestData(call, new ApiClient.ApiResponseCallback<JsonResModel>() {
+            @Override
+            public void onSuccess(JsonResModel data) {
+                if (data.getCode() == 200) {
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.submit(() -> {
+                        Log.d("syncPlayRecord", "同步成功:");
+                        List<Integer> ids = new ArrayList<>();
+                        for (PlayRecord record : unsyncedRecords) {
+                            ids.add(record.getId());
+                        }
+                        syncPlayRecord.markRecordsAsSynced(ids);
+                    });
+                }else{
+                    Log.e("syncPlayRecord", "同步失败:" +data);
+                }
+            }
+            @Override
+            public void onFailure(String error) {
+
+                Log.e("syncPlayRecord", "同步失败:"+error);
+            }
+        });
+
+    }
+
+    // 同步数据的方法
+    public void syncMyStarData() {
+
+        AppDatabase db = AppDatabase.getInstanceMyStarRecord(getApplicationContext());
+        MyStarRecordDao myStarRecordDao=db.myStarRecordDao();
+        // 获取所有未同步的记录
+        List<MyStarRecord> unsyncedRecords = myStarRecordDao.getUnsyncedRecords();
+
+        if (unsyncedRecords.isEmpty()) {
+            return; // 没有未同步的数据
+        }
+
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        //这里就不创建新的接受类了 使用泛 Map
+        Call<JsonResModel> call = apiService.syncStarRecords(unsyncedRecords);
+
+        ApiClient.requestData(call, new ApiClient.ApiResponseCallback<JsonResModel>() {
+            @Override
+            public void onSuccess(JsonResModel data) {
+                if (data.getCode() == 200) {
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.submit(() -> {
+                        Log.d("syncMyStarData", "同步成功:");
+                        List<Integer> ids = new ArrayList<>();
+                        for (MyStarRecord record : unsyncedRecords) {
+                            ids.add(record.getId());
+                        }
+                        myStarRecordDao.markRecordsAsSynced(ids);
+                    });
+                }else{
+                    Log.e("syncMyStarData", "同步失败:" +data);
+                }
+            }
+            @Override
+            public void onFailure(String error) {
+
+                Log.e("syncMyStarData", "同步失败:"+error);
+            }
+        });
     }
 }

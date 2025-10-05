@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -386,33 +387,42 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
 
         if (mIfCurrentIsFullscreen && !mSurfaceErrorPlay && mCurrentState == CURRENT_STATE_ERROR) {
             if (mBottomContainer != null) {
+
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPlayingClear();
                 } else {
+
                     changeUiToPlayingShow();
                 }
             }
         } else if (mCurrentState == CURRENT_STATE_PREPAREING) {
             if (mBottomContainer != null) {
+
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPrepareingClear();
                 } else {
+                    //一个弹幕的暂停操作
+
                     changeUiToPreparingShow();
                 }
             }
         } else if (mCurrentState == CURRENT_STATE_PLAYING) {
             if (mBottomContainer != null) {
+               // danmakuPauseOrResume(1);
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPlayingClear();
                 } else {
+
                     changeUiToPlayingShow();
                 }
             }
         } else if (mCurrentState == CURRENT_STATE_PAUSE) {
             if (mBottomContainer != null) {
+
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPauseClear();
                 } else {
+
                     changeUiToPauseShow();
                 }
             }
@@ -425,10 +435,13 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
                 }
             }
         } else if (mCurrentState == CURRENT_STATE_PLAYING_BUFFERING_START) {
+            //danmakuPauseOrResume(0);
             if (mBottomContainer != null) {
+
                 if (mBottomContainer.getVisibility() == View.VISIBLE) {
                     changeUiToPlayingBufferingClear();
                 } else {
+
                     changeUiToPlayingBufferingShow();
                 }
             }
@@ -480,8 +493,10 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
                 ((ENDownloadView) mLoadingProgressBar).start();
             }
         }
+
     }
 
+    //视频播放时
     @Override
     protected void changeUiToPlayingShow() {
         Debuger.printfLog("changeUiToPlayingShow");
@@ -503,6 +518,7 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
             ((ENDownloadView) mLoadingProgressBar).reset();
         }
         updateStartImage();
+
     }
 
     @Override
@@ -525,8 +541,10 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
         }
         updateStartImage();
         updatePauseCover();
+
     }
 
+    //视频缓冲时调用此函数
     @Override
     protected void changeUiToPlayingBufferingShow() {
         Debuger.printfLog("changeUiToPlayingBufferingShow");
@@ -545,6 +563,12 @@ public class StandardGSYVideoPlayer extends GSYVideoPlayer {
                 ((ENDownloadView) mLoadingProgressBar).start();
             }
         }
+
+    }
+
+    @Override
+    protected void danmakuPauseOrResume(int flag){
+
     }
 
     @Override

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.gsyvideoplayer.common.Param;
 import com.example.gsyvideoplayer.simple.ViewPagerAdapter;
 import com.example.gsyvideoplayer.databinding.ActivityDanmakuLayoutBinding;
 import com.example.gsyvideoplayer.simple.CommentFragment;
@@ -24,15 +25,21 @@ import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 import com.shuyu.gsyvideoplayer.listener.LockClickListener;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer;
+import com.squareup.picasso.Picasso;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.FileCallBack;
 
+import com.zhy.http.okhttp.callback.StringCallback;
+
+
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 import okhttp3.Call;
+
 
 /**
  * Created by guoshuyu on 2017/2/19.
@@ -57,13 +64,15 @@ public class DanmkuVideoActivity extends AppCompatActivity {
     private VodData videoData;
     private ArrayList<String> videourls;
 
+    private int currentEpisode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
      //   setContentView(R.layout.activity_danmaku_layout);//这里需要手动设置 否则会崩溃，之前使用的应该是一个回调getid来获取绑定布局，但不知道在哪里调用
 
 
-
+        Param.setStatusBarTransparent(this, false,0x73000000);
+        //类型安全：使用 ViewBinding 代替 findViewById() 可以避免空指针异常，并且在编译时就能检测到错误。
         binding = ActivityDanmakuLayoutBinding.inflate(getLayoutInflater());
 
         View rootView = binding.getRoot();
@@ -90,7 +99,7 @@ public class DanmkuVideoActivity extends AppCompatActivity {
         //必须在setUp之前设置
         //获取视频数据
         videoData = getIntent().getParcelableExtra("video_data");
-
+        currentEpisode=getIntent().getIntExtra("currentEpisode",1);
         dealVideourls();
         // 设置视频数据和 URL 列表
         binding.danmakuPlayer.setVideoData(videoData);
@@ -103,12 +112,17 @@ public class DanmkuVideoActivity extends AppCompatActivity {
 //        String url = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
         //String url = "https://res.exexm.com/cw_145225549855002";
 
-        binding.danmakuPlayer.setUp(videoData.getVod_play_url(), true, null, videoData.getVod_name()+"—第1集");
+        binding.danmakuPlayer.setUp(videoData.getVod_play_url(), false, null, videoData.getVod_name()+"—第"+currentEpisode+"集");
 
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.mipmap.xxx1);
+//        imageView.setImageResource(R.mipmap.xxx1);
+        Picasso.get()
+            .load(videoData.getVod_pic())
+            .placeholder(R.drawable.bg_wiht_shadow) // 加载中显示的图片
+            .error(R.drawable.bg_wiht_shadow)             // 加载失败显示的图片
+            .into(imageView);
         binding.danmakuPlayer.setThumbImageView(imageView);
 
         resolveNormalVideoUI();
@@ -243,26 +257,80 @@ public class DanmkuVideoActivity extends AppCompatActivity {
     }
 
 
-    private void getDanmu() {
-        //下载demo然后设置
-        OkHttpUtils.get().url("https://comment.bilibili.com/205245882.xml")
-                .build()
-                .execute(new FileCallBack(getApplication().getCacheDir().getAbsolutePath(), "barrage.txt")//
-                {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
+//    private void getDanmu() {
+//        //下载demo然后设置
+//        OkHttpUtils.get().url("https://comment.bilibili.com/205245882.xml")
+//                .build()
+//                .execute(new FileCallBack(getApplication().getCacheDir().getAbsolutePath(), "barrage.txt")//
+//                {
+//                    @Override
+//                    public void onError(Call call, Exception e, int id) {
+//                    }
+//
+//                    @Override
+//                    public void onResponse(File response, int id) {
+//                        if (!isDestory) {
+//                            ((DanmakuVideoPlayer) binding.danmakuPlayer.getCurrentPlayer()).setDanmaKuStream(response);
+//                        }
+//
+//                    }
+//
+//                });
+//    }
+private void getDanmu() {
+
+    //设置使用自定义的okhttp验证方式
+    OkHttpUtils.initClient(NetworkHelper.getOkHttpClient());
+    // 构建 JSON 数据，int 不需要转换为字符串
+    int vod_id=videoData.getVod_id() ,vod_nid= binding.danmakuPlayer.getCurrentEpisode();
+
+    //String json = String.format("{\"vod_id\":%d, \"vod_nid\":%d}", vod_id, vod_nid);
+
+
+    //下载demo然后设置
+    OkHttpUtils.post()
+        .url("https://113.45.243.38/api.php/danmaku/get_mobile")
+        .addParams("vod_id", String.valueOf(vod_id))    // 添加POST参数
+        .addParams("vod_nid", String.valueOf(vod_nid))    // 可继续添加参数
+        .build()
+        .execute(new StringCallback() {
+            @Override
+            public void onError(Call call, Exception e, int id) {
+                Log.e("getdanmaku", "请求失败: " + e.getMessage(), e);
+
+                // 如果是网络问题，可以进一步判断
+                if (e instanceof java.net.UnknownHostException) {
+                    Log.e("getdanmaku", "未知主机异常: " + e.getMessage());
+                } else if (e instanceof java.net.SocketTimeoutException) {
+                    Log.e("getdanmaku", "请求超时: " + e.getMessage());
+                } else if (e instanceof java.io.IOException) {
+                    Log.e("getdanmaku", "IO异常: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void onResponse(String response, int id) {
+                try{
+                    if (!isDestory) {
+
+                        // 2️⃣ 保存到本地 JSON 文件
+                        String fileName=videoData.getVod_name()+binding.danmakuPlayer.getCurrentEpisode();
+                        File jsonFile = new File(getApplication().getCacheDir(),fileName );
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFile));
+                        writer.write(response);    // 格式化输出，缩进4空格
+                        writer.close();
+                        Log.e("getdanmaku", "onResponse: " +response);
+                        ((DanmakuVideoPlayer) binding.danmakuPlayer.getCurrentPlayer()).setDanmaKuStream(jsonFile);
                     }
+                }catch (Exception e){
+                    Log.e("getdanmaku", "解析失败: " + e.getMessage());
+                }
 
-                    @Override
-                    public void onResponse(File response, int id) {
-                        if (!isDestory) {
-                            ((DanmakuVideoPlayer) binding.danmakuPlayer.getCurrentPlayer()).setDanmaKuStream(response);
-                        }
 
-                    }
-
-                });
+            }
+        });
     }
+
     private void dealVideourls(){
         String url_remarks=videoData.getVod_remarks();
         // 提取数字并转换为整数
@@ -308,5 +376,9 @@ public class DanmkuVideoActivity extends AppCompatActivity {
 
     public ActivityDanmakuLayoutBinding getBinding(){
         return binding;
+    }
+
+    public int getCurrentEpisode(){
+        return this.currentEpisode;
     }
 }

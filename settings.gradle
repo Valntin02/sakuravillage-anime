@@ -11,3 +11,9 @@ include ":app",
     ":gsyVideoPlayer-exo_player2",
     ":gsyVideoPlayer-base",
     ":gsyVideoPlayer-aliplay"
+include ':ndkbitmap-armv7a'
+include ':Sample'
+include ':DanmakuFlameMaster'
+include ':ndkbitmap-armv5'
+include ':ndkbitmap-x86'
+include ':DanmakuFlameMaster2'

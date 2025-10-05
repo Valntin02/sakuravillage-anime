@@ -1,5 +1,6 @@
 package com.example.gsyvideoplayer.simple;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class SimplePlayer extends AppCompatActivity {
 
     OrientationUtils orientationUtils;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +32,16 @@ public class SimplePlayer extends AppCompatActivity {
     }
 
     private void init() {
+        Intent intent=getIntent();
         videoPlayer =  (StandardGSYVideoPlayer)findViewById(R.id.video_player);
         Log.d("GetData", "init 测试");
-        String source1 = "https://c1.7bbffvip.com/video/zuiruojinengguoshidashiguanyunengwuxianshiyongjinengguoshichiliaojiuhuisizhejianshi/第01集/index.m3u8";
-        videoPlayer.setUp(source1, false, "测试视频");
+//        String source1 = "https://c1.7bbffvip.com/video/zuiruojinengguoshidashiguanyunengwuxianshiyongjinengguoshichiliaojiuhuisizhejianshi/第01集/index.m3u8";
+//        videoPlayer.setUp(source1, false, "测试视频");
+        String url=intent.getStringExtra("video_path");
+        String name =intent.getStringExtra("video_name");
 
+        Log.d("GetData", "init url: "+url);
+        videoPlayer.setUp(url, false, name);
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".GSYApplication"
@@ -169,9 +170,15 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Full" />
 
-
+        <activity android:name=".simple.ReplyActivity"/>
         <activity android:name=".simple.SearchActivity"/>
         <activity android:name=".simple.Main2Activity"/>
+        <activity android:name=".simple.PlayRecordActivity"/>
+        <activity android:name=".simple.MyStarActivity"/>
+        <activity android:name=".simple.ActvityDownVideo"/>
+<!--        export=false 表示只能在此应用内启动它-->
+        <service android:name=".simple.ServiceDownload"  android:exported="false"/>
+
         <activity
             android:name=".simple.SimpleDetailActivityMode1"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"

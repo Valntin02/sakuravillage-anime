@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.example.gsyvideoplayer.R;
 
 public class TopNavigationFragment extends Fragment {
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,11 +28,26 @@ public class TopNavigationFragment extends Fragment {
         Button btnSearch = rootView.findViewById(R.id.btn_search);
         btnSearch.setOnClickListener(v -> {
             // 跳转到 SearchActivity
-            Log.d("serch","点击率");
             Intent intent = new Intent(getActivity(), SearchActivity.class);
             startActivity(intent);
         });
 
+        TextView tvAnime=rootView.findViewById(R.id.home_anime);
+        TextView txHome=rootView.findViewById(R.id.home_text);
+        txHome.setOnClickListener(v->{
+            MyMainFragment parentFragment = (MyMainFragment) getParentFragment();
+            if (parentFragment != null) {
+                parentFragment.switchToHome(txHome,tvAnime);
+            }
+        });
+
+
+        tvAnime.setOnClickListener(v -> {
+            MyMainFragment parentFragment = (MyMainFragment) getParentFragment();
+            if (parentFragment != null) {
+                parentFragment.switchToAnime(tvAnime,txHome);
+            }
+        });
         return rootView;
     }
 }

@@ -33,6 +33,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     @Override
     public void onBindViewHolder(VideoViewHolder holder, int position) {
+
         VodData video = videoList.get(position);
         holder.videoTitle.setText(video.getVod_name());
         // 这里可以加载图片，比如使用 Glide 加载缩略图
@@ -43,6 +44,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), DanmkuVideoActivity.class);
             intent.putExtra("video_data", video);  // 传递单个 VodData 对象
+            intent.putExtra("currentEpisode",1);
             v.getContext().startActivity(intent);
         });
     }
@@ -61,5 +63,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             videoImage = itemView.findViewById(R.id.videoImage);
             videoTitle = itemView.findViewById(R.id.videoTitle);
         }
+    }
+
+    public void setVodDataList(List<VodData> vodDataList){
+
+        this.videoList=vodDataList;
+        notifyDataSetChanged(); // 通知刷新
     }
 }

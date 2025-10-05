@@ -11,7 +11,7 @@ import com.example.gsyvideoplayer.NetworkHelper;
 import java.io.InputStream;
 
 import okhttp3.OkHttpClient;
-//自己定义一个glide 使用自己定义的okhttpclient
+//自己定义一个glide 使用自己定义的okhttpclient,这里设置的是glide 和单独使用okhttpclient没有关系
 @com.bumptech.glide.annotation.GlideModule
 public class MyAppGlideModule extends AppGlideModule {
     @Override

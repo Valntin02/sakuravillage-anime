@@ -25,7 +25,10 @@ public class ApiClient {
                     }
                 } else {
                     //Log.e(TAG, "Request failed: " + response.message());
-                    callback.onFailure("Request failed: " + response.message());
+                  //  T data = response.body();
+                    callback.onFailure("Request failed: " );
+
+
                 }
             }
 
@@ -41,5 +44,6 @@ public class ApiClient {
     public interface ApiResponseCallback<R> {
         void onSuccess(R data);
         void onFailure(String error);
+
     }
 }

@@ -311,6 +311,7 @@ public abstract class GSYVideoView extends GSYTextureRenderView implements GSYMe
             || mCurrentState == CURRENT_STATE_AUTO_COMPLETE)) {
             Debuger.printfLog("onClickStartIcon");
             mVideoAllCallBack.onClickStartIcon(mOriginUrl, mTitle, this);
+
         } else if (mVideoAllCallBack != null) {
             Debuger.printfLog("onClickStartError");
             mVideoAllCallBack.onClickStartError(mOriginUrl, mTitle, this);

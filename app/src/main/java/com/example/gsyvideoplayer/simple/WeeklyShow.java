@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,6 +33,7 @@ public class WeeklyShow extends Fragment {
     private List<VodData> vodDataList = new ArrayList<>();
     // 用来缓存每个星期的数据
     private Map<String, List<VodData>> dataCache = new HashMap<>();
+
 
     private String getWeekdayString(int checkedId) {
         switch (checkedId) {
@@ -121,6 +123,7 @@ public class WeeklyShow extends Fragment {
                 videoAdapter.notifyDataSetChanged();
                 // 将请求到的数据缓存到 Map 中
                 dataCache.put(weekday, new ArrayList<>(vodDataList));
+
             }
 
             @Override

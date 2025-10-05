@@ -9,6 +9,7 @@ import androidx.media3.datasource.TransferListener;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.multidex.MultiDexApplication;
 
+import com.example.gsyvideoplayer.common.Param;
 import com.example.gsyvideoplayer.exosource.GSYExoHttpDataSourceFactory;
 
 import java.io.File;
@@ -29,6 +30,9 @@ public class GSYApplication extends MultiDexApplication {
         super.onCreate();
 
         context = getApplicationContext();
+        // 初始化 Param 单例并加载 IP 地址
+        Param.getInstance().init(this);
+
         /*if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.

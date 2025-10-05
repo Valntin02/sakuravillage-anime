@@ -2,11 +2,14 @@ package com.example.gsyvideoplayer;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.util.Log;
 import android.view.View;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(rootView);
 
         Debuger.enable();
+
 
         binding.openBtn.setOnClickListener(this);
         binding.listBtn.setOnClickListener(this);
