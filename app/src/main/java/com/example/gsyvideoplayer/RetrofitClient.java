@@ -1,5 +1,6 @@
 package com.example.gsyvideoplayer;
 
+import com.example.gsyvideoplayer.common.Param;
 import com.example.gsyvideoplayer.simple.ApiService;
 
 import retrofit2.Retrofit;
@@ -15,7 +16,7 @@ public class RetrofitClient {
         if (retrofit == null) {
             synchronized (RetrofitClient.class) { // synchronized 用于保证线程安全
                 if (retrofit == null) {
-                    retrofit = NetworkHelper.getRetrofitInstance("https://113.45.243.38");
+                    retrofit = NetworkHelper.getRetrofitInstance(Param.getInstance().getBaseUrl());
                 }
             }
         }

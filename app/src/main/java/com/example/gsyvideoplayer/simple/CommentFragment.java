@@ -236,11 +236,14 @@ public class CommentFragment extends Fragment implements CommentAdapter.OnReplyC
             @Override
             public void onSuccess(UserAvatarResModel data) {
                 Log.d("GetComment", "msg" + data);
-                List<UserAvatarData> temp=data.getData();
+
 
                 if(data.getCode()==200){
+                    List<UserAvatarData> temp=data.getData();
                     for (UserAvatarData t : temp) {
-                        map.put(t.getUserId(), Param.getInstance().getBaseUrl()+t.getUserAvatar());
+                        String userAvatar = "https://113.45.243.38/"+t.getUserAvatar();
+                        Log.d("GetComment", "msg" + data);
+                        map.put(t.getUserId(), userAvatar);
                     }
                     //commentAdapter.notifyDataSetChanged();
                     organizeComments(commentDataList);

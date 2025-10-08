@@ -18,64 +18,64 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @POST("/api.php/danmaku/get")
+    @POST("/api/danmaku/get")
     Call<DanmakuResModel> requestData(@Body DanmakuReqModel requestBody);
 
-    @POST("/api.php/danmaku/send_danmaku")
+    @POST("/api/danmaku/send_danmaku")
     Call<JsonResModel> sendDanmaku(@Body DanmakuReqModel requestBody,@Header("Authorization") String token);
-    @GET("/api.php/Vodlist/get_weekly")
+    @GET("/api/vodlist/get_weekly")
     Call<VodResModel> requestVodData(@Query("vod_weekday") String vod_weekday);
 
-    @GET("/api.php/Vodlist/get_today")
+    @GET("/api/vodlist/get_today")
     Call<VodResModel> requestVodData();
-    @POST("/api.php/Login/login")
+    @POST("/api/login/login")
     Call<UserResModel> login(@Body RequestBody body);
 
-    @POST("/api.php/Login/register")
+    @POST("/api/login/register")
     Call<UserResModel> register(@Body RequestBody body);
 
     @Multipart
-    @POST("/api.php/Login/uploadAvatar")
+    @POST("/api/login/uploadAvatar")
     Call<JsonResModel> requestUploadAvatar(
         @Part("user_id") RequestBody userId,
         @Part("url_flag") RequestBody urlFlag,
         @Part MultipartBody.Part input
     );
-    @GET("/api.php/Login/get_anno")
+    @GET("/api/login/get_anno")
     Call<JsonResModel> requestAnnoData();
 
-    @GET("/api.php/Comment/comment_vodId")
+    @GET("/api/comment/comment_vodId")
     Call<CommentResModel> requestComment(@Query("comment_rid") int comment_rid);
 
-    @POST("/api.php/Comment/comment_userAvatar")
+    @POST("/api/comment/comment_userAvatar")
     Call<UserAvatarResModel> requestUserAvatar(@Body RequestBody body);
 
-    @POST("/api.php/Comment/replyVod_comment")
+    @POST("/api/comment/replyVod_comment")
     Call<JsonResModel> requestReplyVod(@Body CommentData body,@Header("Authorization") String token);
 
-    @POST("/api.php/Comment/comment_UpDown")
+    @POST("/api/comment/comment_UpDown")
     Call<JsonResModel> requestCommentUpDown(@Body CommentData body,@Header("Authorization") String token);
 
-    @POST("/api.php/Comment/comment_report")
+    @POST("/api/comment/comment_report")
     Call<JsonResModel> requestCommentReport(@Body CommentData body,@Header("Authorization") String token);
 
-    @GET("/api.php/vodlist/suggest")
+    @GET("/api/vodlist/suggest")
     Call<Map<String, Object>> requestSuggestData(@Query("input_search") String wd);
 
-    @GET("/api.php/Vodlist/searchVod")
+    @GET("/api/vodlist/searchVod")
     Call<VodResModel> requestRearchVodData(@Query("input_search") String wd);
-    @GET("/api.php/Vodlist/vodlistPage")
+    @GET("/api/vodlist/vodlistPage")
     Call<VodPageResModel> requestVideoPage(@Query("page") int page,@Query("limit") int limit);
 
-    @POST("/api.php/Login/userSyncMyStar")
+    @POST("/api/login/userSyncMyStar")
     Call<JsonResModel> syncStarRecords(@Body List<MyStarRecord> records);
 
-    @POST("/api.php/Login/userSyncPlayRecord")
+    @POST("/api/login/userSyncPlayRecord")
     Call<JsonResModel> syncPlayRecords(@Body List<PlayRecord> records);
 
-    @GET("/api.php/Login/getSyncPlayRecord")
+    @GET("/api/login/getSyncPlayRecord")
     Call<PlayRecordResModel> requestPlayRecords(@Query("userId") int userId);
 
-    @GET("/api.php/Login/getSyncUserStar")
+    @GET("/api/login/getSyncUserStar")
     Call<MyStarResModel> requestMyStars(@Query("userId") int userId);
 }
