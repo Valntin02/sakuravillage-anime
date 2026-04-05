@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gsyvideoplayer.R;
 import com.example.gsyvideoplayer.RetrofitClient;
+import com.example.gsyvideoplayer.common.Param;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.io.FileNotFoundException;
@@ -72,7 +73,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
 
     private  void avatarRefresh(boolean flag,String url){
-        String baseurl = "https://113.45.243.38/";
+        String baseurl = Param.getInstance().getBaseUrl();
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
 

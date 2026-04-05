@@ -29,7 +29,7 @@ public class Param {
     // 参数
 //    private String baseUrl = "https://113.45.243.38/";
 
-    private String baseUrl = "http://192.168.224.186:8000";
+    private String baseUrl = "http://192.168.224.127:8000/";
     private String ipAddress = "0.0.0.0";  // IP地址
 
     // 私有构造函数，防止外部创建
