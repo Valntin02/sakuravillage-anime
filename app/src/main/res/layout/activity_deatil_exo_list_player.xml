@@ -29,7 +29,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.example.gsyvideoplayer.exo.GSYExo2PlayerView
+    <com.sakuravillage.ui.player.GSYExo2PlayerView
         android:id="@+id/detail_player"
         android:layout_width="match_parent"
         android:layout_height="@dimen/post_media_height" />

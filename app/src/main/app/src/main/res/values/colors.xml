@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ====== 极光蓝品牌色系 ====== -->
+    <color name="brand_50">#E0FBFF</color>
+    <color name="brand_100">#B3F5FF</color>
+    <color name="brand_200">#80EFFF</color>
+    <color name="brand_300">#4DE9FF</color>
+    <color name="brand_400">#26E4FF</color>
+    <color name="brand_500">#00D1FF</color>  <!-- 核心品牌色 -->
+    <color name="brand_600">#00ADDB</color>
+    <color name="brand_700">#0089B7</color>
+    <color name="brand_800">#006593</color>
+    <color name="brand_900">#004A7A</color>
+
+    <!-- ====== 深色主题背景 ====== -->
+    <color name="dark_bg">#0A0E14</color>        <!-- 极深星空蓝 - 主背景 -->
+    <color name="dark_card">#151921</color>      <!-- 卡片背景 -->
+    <color name="dark_lighter">#1C212C</color>   <!-- 悬浮/交互状态 -->
+    <color name="dark_border">#21262D</color>     <!-- 边框色 -->
+
+    <!-- ====== 辅助颜色 ====== -->
+    <color name="accent_500">#7000FF</color>     <!-- 深空紫 -->
+
+    <!-- ====== 文本颜色 ====== -->
+    <color name="text_primary">#E6EDF3</color>  <!-- 主要文本 -->
+    <color name="text_secondary">#8B949E</color> <!-- 次要文本 -->
+    <color name="text_tertiary">#6E7681</color> <!-- 三级文本 -->
+    <color name="text_disabled">#484F58</color>  <!-- 禁用文本 -->
+
+    <!-- ====== 状态颜色 ====== -->
+    <color name="success">#52C41A</color>
+    <color name="warning">#FAAD14</color>
+    <color name="error">#FF4D4F</color>
+    <color name="info">#1890FF</color>
+
+    <!-- ====== 底部导航栏 ====== -->
+    <color name="nav_bg">#14161F</color>
+    <color name="nav_item_icon_color">#8B949E</color>
+    <color name="nav_item_icon_color_selected">#00D1FF</color>
+    <color name="nav_item_text_color">#8B949E</color>
+    <color name="nav_item_text_color_selected">#00D1FF</color>
+
+    <!-- ====== 其他 ====== -->
+    <color name="transparent">#00000000</color>
+    <color name="btn_rect_alpha">#56b3b3b3</color>
+    <color name="comment_item_reply">#1C212C</color>
+
+    <!-- ====== 向后兼容 ====== -->
+    <color name="colorPrimary">@color/brand_500</color>
+    <color name="colorPrimaryDark">@color/brand_700</color>
+    <color name="colorAccent">@color/brand_500</color>
+    <color name="common_color">@color/brand_500</color>
+</resources>

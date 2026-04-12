@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重要通知"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#f09199"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_announcement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:text="这里是自定义公告内容"
+        android:textSize="16sp"
+        android:textColor="#333" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#f09199"
+        android:textColor="#FFF"
+        android:text="确认" />
+    </RelativeLayout>
+</LinearLayout>

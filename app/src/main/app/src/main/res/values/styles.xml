@@ -1,0 +1,136 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ====== 应用主主题 ====== -->
+    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- 核心颜色 -->
+        <item name="colorPrimary">@color/brand_500</item>
+        <item name="colorPrimaryDark">@color/brand_700</item>
+        <item name="colorAccent">@color/brand_500</item>
+
+        <!-- 背景颜色 -->
+        <item name="android:windowBackground">@color/dark_bg</item>
+        <item name="android:colorBackground">@color/dark_bg</item>
+
+        <!-- 文本颜色 -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+
+        <!-- 状态栏 -->
+        <item name="android:statusBarColor">@color/dark_bg</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <!-- 导航栏 -->
+        <item name="android:navigationBarColor">@color/dark_bg</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="m">false</item>
+
+        <!-- 对话框主题 -->
+        <item name="alertDialogTheme">@style/AlertDialogCustom</item>
+    </style>
+
+    <!-- ====== 底部导航栏主题 ====== -->
+    <style name="BottomNavTheme" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemBackground">@color/transparent</item>
+        <item name="itemIconTint">@color/nav_item_icon_color</item>
+        <item name="itemTextColor">@color/nav_item_text_color</item>
+        <item name="itemRippleColor">@color/brand_500</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- ====== 卡片样式 ====== -->
+    <style name="CardStyle" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/dark_card</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeColor">@color/dark_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- ====== 按钮样式 ====== -->
+    <style name="PrimaryButton" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/brand_500</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/brand_500</item>
+        <item name="android:textColor">@color/brand_500</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/brand_500</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <!-- ====== 编辑框样式 ====== -->
+    <style name="EditTextStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/dark_card</item>
+        <item name="boxStrokeColor">@color/dark_border</item>
+        <item name="hintTextColor">@color/text_tertiary</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+    <!-- ====== 文本样式 ====== -->
+    <style name="TextHeading">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextSubheading">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextBody">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextCaption">
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ====== 对话框自定义样式 ====== -->
+    <style name="AlertDialogCustom" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="android:background">@color/dark_card</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- ====== 其他样式 ====== -->
+    <style name="Theme.AppCompat.Translucent" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="Theme.AppCompat.Transitions" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="Theme.AppCompat.Full" parent="Theme.AppCompat.Translucent">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="BottomNavTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ====== 圆角样式 ====== -->
+    <style name="CircularShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>

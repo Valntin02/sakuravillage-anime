@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/comment_input_layout"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/white"
+
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <!-- 输入框 -->
+    <EditText
+        android:id="@+id/comment_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:hint="发个友善的评论吧～"
+
+        android:singleLine="true"
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:background="@drawable/edittext_background"
+        />
+
+
+    <!-- 发送按钮 -->
+    <ImageView
+        android:id="@+id/send_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/material_send"
+
+        android:contentDescription="发送"
+        android:layout_marginStart="8dp" />
+</LinearLayout>

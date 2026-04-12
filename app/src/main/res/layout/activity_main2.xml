@@ -8,20 +8,26 @@
 
 
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fitsSystemWindows="true" />
+    <FrameLayout
+        android:id="@+id/main2_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fitsSystemWindows="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <!-- 底部导航栏 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/fragment_bottom_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="#ffc7c7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:menu="@menu/menu_main2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

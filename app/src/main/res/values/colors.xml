@@ -14,4 +14,18 @@
 
     <color name="comment_item_reply">#ececec</color>  <!-- 子评论区域 -->
     <color name="common_color">#8785a2</color>  <!-- 子评论区域 -->
+
+    <!-- 深色主题颜色 -->
+    <color name="dark_bg">#1A1A2E</color>
+    <color name="dark_card">#16213E</color>
+    <color name="dark_border">#0F3460</color>
+    <color name="dark_lighter">#1E2A4A</color>
+
+    <!-- 品牌色 -->
+    <color name="brand_500">#8785A2</color>
+
+    <!-- 文本颜色 -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B8B8D1</color>
+    <color name="text_tertiary">#8C8CAA</color>
 </resources>
