@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/dark_bg"
     android:fitsSystemWindows="true">
 
     <!-- 标题 -->
@@ -10,15 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="我的追番"
-        android:background="#ffe2e2"
+        android:background="@drawable/bg_glass_nav"
+        android:textColor="@color/text_primary"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="start"
-        android:padding="8dp"/>
+        android:gravity="start|center_vertical"
+        android:minHeight="48dp"
+        android:padding="16dp" />
 
     <!-- 播放记录列表 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_star_records"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

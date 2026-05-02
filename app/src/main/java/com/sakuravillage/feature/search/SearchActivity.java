@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         //设置状态栏透明
-        Param.setStatusBarTransparent(this, true,0xFFffe2e2); // 白底黑字
+        Param.setStatusBarTransparent(this, false, getResources().getColor(R.color.dark_bg));
 
         editTextSearch = findViewById(R.id.editTextSearch);
         btnSearch = findViewById(R.id.btnSearch);

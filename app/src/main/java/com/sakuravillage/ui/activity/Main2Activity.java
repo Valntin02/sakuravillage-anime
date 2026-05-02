@@ -41,7 +41,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Param.setStatusBarTransparent(this, true,0xFFffe2e2);
+        Param.setStatusBarTransparent(this, false, getResources().getColor(R.color.dark_bg));
         // 获取 BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.fragment_bottom_navigation);
         // 设置默认选中项

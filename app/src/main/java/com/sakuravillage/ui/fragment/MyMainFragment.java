@@ -51,33 +51,31 @@ public class MyMainFragment extends Fragment {
         return view;
     }
 
-    //XML 中的颜色写法 #f6f6f6，系统默认会加上不透明的 Alpha 值！,所以这里需要加上透明度的数据部分
     public void switchToHome(TextView selected, TextView unselected) {
         boolean flag=switchContent(fragmentHomePage);
-        //切换成功那么改变颜色
         if(flag){
-            selected.setTextColor(0xFFF6F6F6);
-            unselected.setTextColor(0xFF393E46);
+            applyTabState(selected, unselected);
 
             //公告栏的焦点
             FragmentManager childFragmentManager = fragmentHomePage.getChildFragmentManager();
             Fragment announcementFragment = childFragmentManager.findFragmentByTag("announcement");
 
-            //instanceof 是一个关键字，用于判断一个对象是否是某个类的实例
             if (announcementFragment instanceof AnnouncementBar) {
                 ((AnnouncementBar) announcementFragment).onShow();
-                //Log.d("AnnouncementBar", "onShow: ");
             }
-
         }
     }
 
     public void switchToAnime(TextView selected, TextView unselected) {
         boolean flag=switchContent(fragmentAnime);
         if(flag){
-            selected.setTextColor(0xFFF6F6F6);
-            unselected.setTextColor(0xFF393E46);
+            applyTabState(selected, unselected);
         }
+    }
+
+    private void applyTabState(TextView selected, TextView unselected) {
+        selected.setTextColor(getResources().getColor(R.color.text_primary));
+        unselected.setTextColor(getResources().getColor(R.color.text_secondary));
     }
 
     // 切换 fragment_content 内容的方法 使用add

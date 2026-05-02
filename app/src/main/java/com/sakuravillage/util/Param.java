@@ -27,6 +27,7 @@ public class Param {
     // 单例模式
     private static volatile Param instance = null;
 
+    // 模拟器内置 host loopback 别名，免 adb reverse；真机需走 DEVICE_BASE_URL
     private static final String EMULATOR_BASE_URL = "http://10.0.2.2:8000/";
     private static final String DEVICE_BASE_URL = "http://192.168.224.127:8000/";
 

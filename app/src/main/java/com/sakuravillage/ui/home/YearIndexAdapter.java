@@ -4,8 +4,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +23,7 @@ public class YearIndexAdapter extends RecyclerView.Adapter<YearIndexAdapter.Year
     private List<String> yearList;
     private OnYearClickListener listener;
     public  static  class YearViewHolder extends RecyclerView.ViewHolder{
-        Button yearButton;
+        TextView yearButton;
         public YearViewHolder(View itemView){
             super(itemView);
             yearButton = itemView.findViewById(R.id.year_button);

@@ -33,7 +33,7 @@ public class PlayRecordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_record);
-        Param.setStatusBarTransparent(this, true,0xFFffe2e2);
+        Param.setStatusBarTransparent(this, false, getResources().getColor(R.color.dark_bg));
         recyclerView = findViewById(R.id.rv_play_records);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // 异步加载数据

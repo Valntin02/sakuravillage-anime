@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_bg"
     android:fitsSystemWindows="true">
 
     <TextView
@@ -11,20 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="本地缓存"
-        android:background="#ffe2e2"
+        android:background="@drawable/bg_glass_nav"
+        android:textColor="@color/text_primary"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:gravity="start|center_vertical"
+        android:minHeight="48dp"
+        android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="8dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="#F4F4F4"
+        android:background="@color/dark_bg"
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/titleText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

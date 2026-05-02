@@ -4,36 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#ffc7c7"
-    >
+    android:background="@color/nav_bg">
 
-    <!-- 首页按钮 -->
     <Button
         android:id="@+id/home_button"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/button_background"
+        android:background="?android:attr/selectableItemBackground"
         android:drawableTop="@drawable/material_home"
         android:drawablePadding="0dp"
-
         android:text="首页"
-        android:textColor="#000000"
+        android:textColor="@color/text_secondary"
         android:textSize='10dp' />
 
-    <!-- 我的按钮 -->
     <Button
         android:id="@+id/my_button"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/button_background"
+        android:background="?android:attr/selectableItemBackground"
         android:text="我的"
-        android:textColor="#000000"
+        android:textColor="@color/text_secondary"
         android:textSize='10dp'
         android:gravity="center"
         android:drawableTop="@drawable/material_myinfo"
-        android:drawablePadding="0dp"
-        />
+        android:drawablePadding="0dp" />
 
 </LinearLayout>

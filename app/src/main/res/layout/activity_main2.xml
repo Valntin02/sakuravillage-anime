@@ -3,10 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
->
-
-
+    android:background="@color/dark_bg"
+    android:fitsSystemWindows="true">
 
     <FrameLayout
         android:id="@+id/main2_fragment_container"
@@ -18,13 +16,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
     <!-- 底部导航栏 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/fragment_bottom_navigation"
+        style="@style/BottomNavTheme"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="#ffc7c7"
+        android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -38,6 +38,13 @@ public class FragmentAnime extends Fragment {
     //这里的page 和SQL不一样 php里面做了封装 从1开始，page等于多少 就等于求第多少页
     int page=1,limit=36,total=0,totalPage=0;
     boolean flagRequest=false; //表示是否可以请求
+    // 当前年份过滤的 API key; null = 全部 (后端不带 year 参数)
+    private String currentYear = null;
+    // UI 标签 (中文展示用)
+    private static final String LABEL_ALL = "全部年份";
+    private static final String LABEL_EARLIER = "更早";
+    // 后端约定的稳定 key (英文; 后端同时兼容旧中文以照顾 Vue, 见 vod_service.py)
+    private static final String KEY_EARLIER = "earlier";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,14 +53,15 @@ public class FragmentAnime extends Fragment {
         recyclerViewYears=view.findViewById(R.id.recycler_view_years);
 
         recyclerViewYears.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        yearList.add("全部年份");
+        yearList.add(LABEL_ALL);
         for (int year = 2025; year >= 2010; year--) {
             yearList.add(String.valueOf(year));
         }
-        // 设置年份索引适配器
+        yearList.add(LABEL_EARLIER);
+        // 设置年份索引适配器: 点击切年份 -> 重置分页 -> 后端按 year 重新拉取
         YearIndexAdapter yearIndexAdapter = new YearIndexAdapter(yearList, year -> {
             Log.d("FragmentAnime", "Selected Year: " + year);
-            filterVideosByYear(year);  // 根据年份过滤视频列表
+            applyYearFilter(year);
         });
 
         recyclerViewYears.setAdapter(yearIndexAdapter);
@@ -102,13 +110,13 @@ public class FragmentAnime extends Fragment {
 
         flagRequest=true;
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<VodPageResModel> call = apiService.requestVideoPage(page,limit);
+        // currentYear 为 null 时 Retrofit 会自动省略该 query 参数
+        Call<VodPageResModel> call = apiService.requestVideoPage(page, limit, currentYear);
 
         ApiClient.requestData(call, new ApiClient.ApiResponseCallback<VodPageResModel>() {
             @Override
             public void onSuccess(VodPageResModel data) {
                 Log.d("FragmentAnime", "msg" + data);
-                //vodDataList.clear();
                 vodDataList.addAll(data.getVodDataList());
                 page++;
                 total=data.getTotal();
@@ -123,26 +131,34 @@ public class FragmentAnime extends Fragment {
             public void onFailure(String error) {
                 flagRequest=false;
                 Log.e("FragmentAnime", "Error: " + error);
-
             }
         });
     }
 
-    private void filterVideosByYear(String year) {
-
-        if(year.equals("全部年份")){
-            videoAdapter.setVodDataList(vodDataList);
-            videoAdapter.notifyDataSetChanged();
+    private void applyYearFilter(String label) {
+        String next = labelToApiKey(label);
+        // 同年份重复点击不重新请求
+        if ((next == null && currentYear == null) || (next != null && next.equals(currentYear))) {
             return;
         }
-        // 过滤视频列表，这里可以根据年份过滤接口的数据
-        List<VodData> filteredList = new ArrayList<>();
-        for (VodData video : vodDataList) {
-            if (video.getVod_year().equals(year)) {
-                filteredList.add(video);
-            }
-        }
-        videoAdapter.setVodDataList(filteredList);
+        currentYear = next;
+        page = 1;
+        flagRequest = false;
+        vodDataList.clear();
         videoAdapter.notifyDataSetChanged();
+        recyclerView.scrollToPosition(0);
+        getVideoPage();
+    }
+
+    /**
+     * UI 标签 -> 后端 API key:
+     *   "全部年份" -> null  (Retrofit 自动省略 year 参数)
+     *   "更早"     -> "earlier"
+     *   "2024" 等  -> 原样
+     */
+    private String labelToApiKey(String label) {
+        if (LABEL_ALL.equals(label)) return null;
+        if (LABEL_EARLIER.equals(label)) return KEY_EARLIER;
+        return label;
     }
 }

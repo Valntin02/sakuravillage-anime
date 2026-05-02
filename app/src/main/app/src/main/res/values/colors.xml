@@ -17,9 +17,32 @@
     <color name="dark_card">#151921</color>      <!-- 卡片背景 -->
     <color name="dark_lighter">#1C212C</color>   <!-- 悬浮/交互状态 -->
     <color name="dark_border">#21262D</color>     <!-- 边框色 -->
+    <color name="surface_1">#121A29</color>
+    <color name="surface_2">#182233</color>
+    <color name="surface_3">#1F2C42</color>
+    <color name="border_subtle">#2A3950</color>
 
     <!-- ====== 辅助颜色 ====== -->
     <color name="accent_500">#7000FF</color>     <!-- 深空紫 -->
+    <color name="accent_teal">#4AE5FF</color>
+    <color name="profile_header_start">#12253B</color>
+    <color name="profile_header_end">#1A3A5F</color>
+    <color name="profile_chip_bg">#2A3F65</color>
+    <color name="profile_chip_text">#C6F7FF</color>
+    <color name="profile_glow">#3828D7FF</color>
+    <color name="profile_glow_soft">#1528D7FF</color>
+    <color name="profile_avatar_fill">#10192A</color>
+    <color name="profile_avatar_stroke">#3D628B</color>
+    <color name="profile_icon_bg">#1A2638</color>
+    <color name="profile_icon_stroke">#30445F</color>
+    <color name="glass_surface">#B3151921</color>
+    <color name="glass_surface_strong">#D9151921</color>
+    <color name="glass_border">#26FFFFFF</color>
+    <color name="glass_border_subtle">#14FFFFFF</color>
+    <color name="hero_scrim_top">#140A0E14</color>
+    <color name="hero_scrim_bottom">#F00A0E14</color>
+    <color name="hero_scrim_middle">#8C0A0E14</color>
+    <color name="text_on_hero_secondary">#C7D4DF</color>
 
     <!-- ====== 文本颜色 ====== -->
     <color name="text_primary">#E6EDF3</color>  <!-- 主要文本 -->

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:text="视频状态"
             android:textSize="12sp"
-            android:textColor="#888888"/>
+            android:textColor="@color/text_tertiary"/>
 
         <TextView
             android:id="@+id/se_video_years"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="年份"
             android:textSize="12sp"
-            android:textColor="#888888"/>
+            android:textColor="@color/text_tertiary"/>
 
         <!-- 播放进度 -->
         <TextView
@@ -58,7 +58,7 @@
             android:text="CV"
             android:maxLines="1"
             android:textSize="12sp"
-            android:textColor="#888888"/>
+            android:textColor="@color/text_tertiary"/>
 
     </LinearLayout>
 

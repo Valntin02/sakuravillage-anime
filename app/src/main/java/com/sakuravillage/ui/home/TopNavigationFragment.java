@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -27,7 +25,7 @@ public class TopNavigationFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_top_navigation, container, false);
 
         // 获取搜索按钮并设置点击事件
-        Button btnSearch = rootView.findViewById(R.id.btn_search);
+        TextView btnSearch = rootView.findViewById(R.id.btn_search);
         btnSearch.setOnClickListener(v -> {
             // 跳转到 SearchActivity
             Intent intent = new Intent(getActivity(), SearchActivity.class);

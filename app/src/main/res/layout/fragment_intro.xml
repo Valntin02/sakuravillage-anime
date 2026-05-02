@@ -27,31 +27,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:textColor="@color/text_primary"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:paddingEnd="8dp"
-                />
+                android:paddingEnd="8dp" />
             <TextView
                 android:id="@+id/status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="状态:"
-                android:textSize="16sp"
-                android:paddingEnd="8dp"/>
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:paddingEnd="8dp" />
             <TextView
                 android:id="@+id/years"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="年份:"
-                android:textSize="16sp"
-                android:paddingEnd="8dp"/>
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:paddingEnd="8dp" />
             <TextView
                 android:id="@+id/cvActors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="CV:"
-                android:textSize="16sp"
-                android:paddingEnd="8dp"/>
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:paddingEnd="8dp" />
 
         </LinearLayout>
 
@@ -66,17 +69,20 @@
             android:id="@+id/btn_downloader"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:backgroundTint="#f09199"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/brand_500"
             android:text="下载"
-            android:textColor="#FFF"
+            android:textColor="@color/text_on_brand"
+            android:textAllCaps="false"
             android:textSize="14sp" />
         <Button
             android:id="@+id/btn_star"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:backgroundTint="#f09199"
+            android:backgroundTint="@color/dark_lighter"
             android:text="收藏"
-            android:textColor="#FFF"
+            android:textColor="@color/text_primary"
+            android:textAllCaps="false"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -85,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:text="这里是视频的简介..."
-        android:textSize="16sp"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
         android:maxLines="5"
         android:ellipsize="end"
         android:lineSpacingExtra="4dp" />
@@ -95,10 +102,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选集："
+        android:textColor="@color/text_primary"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"/>
+        android:layout_marginBottom="4dp" />
     <!-- 选集按钮区域 -->
     <HorizontalScrollView
         android:layout_width="match_parent"

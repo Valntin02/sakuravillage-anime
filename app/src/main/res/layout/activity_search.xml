@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fdeff2"
+    android:background="@color/dark_bg"
     android:fitsSystemWindows="true"
     android:padding="16dp">
 
@@ -19,15 +19,21 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="12dp"
             android:hint="请输入搜索内容"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_tertiary"
             android:inputType="text" />
 
         <Button
             android:id="@+id/btnSearch"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:background="#f09199"
-            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_background2"
+            android:textColor="@color/text_on_brand"
+            android:textAllCaps="false"
             android:text="搜索" />
     </LinearLayout>
 
@@ -36,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:visibility="gone"
-        android:background="#FFFFFF"
-        android:elevation="4dp"/>
+        android:background="@drawable/bg_card_soft"
+        android:elevation="4dp" />
 
 
     <!-- 搜索结果区域 -->
@@ -59,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="搜索历史"
+            android:textColor="@color/text_primary"
             android:textStyle="bold"
             android:layout_alignParentStart="true" />
 
@@ -67,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="清空"
+            android:textColor="@color/brand_500"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
 

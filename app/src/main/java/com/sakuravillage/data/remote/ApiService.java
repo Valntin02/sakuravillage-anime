@@ -113,7 +113,7 @@ public interface ApiService {
     Call<VodResModel> requestRearchVodData(@Query("input_search") String wd);
 
     @GET("/api/vodlist/vodlist-page")
-    Call<VodPageResModel> requestVideoPage(@Query("page") int page,@Query("limit") int limit);
+    Call<VodPageResModel> requestVideoPage(@Query("page") int page, @Query("limit") int limit, @Query("year") String year);
 
     @POST("/api/login/sync-my-star")
     Call<JsonResModel> syncStarRecords(@Body List<MyStarRecord> records, @Header("Authorization") String token);

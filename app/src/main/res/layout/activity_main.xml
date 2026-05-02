@@ -13,15 +13,13 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="56dp" />
 
-    <!-- 底部导航栏 -->
+    <!-- 底部导航栏 (frontend: nav-bg #14161F, item brand 选中) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
+        style="@style/BottomNavTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/dark_card"
-        app:itemIconTint="@color/nav_item_text_color"
-        app:itemTextColor="@color/nav_item_text_color"
         app:menu="@menu/bottom_nav_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

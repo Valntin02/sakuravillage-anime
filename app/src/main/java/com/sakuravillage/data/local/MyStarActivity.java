@@ -42,7 +42,7 @@ public class MyStarActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_star_records);
         // 使用 GridLayoutManager 设置列数为 3
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        Param.setStatusBarTransparent(this, true,0xFFffe2e2);
+        Param.setStatusBarTransparent(this, false, getResources().getColor(R.color.dark_bg));
         // 异步加载数据
         executorService.execute(() -> {
             AppDatabase db = AppDatabase.getInstancePlayRecord(this);
